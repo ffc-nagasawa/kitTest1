@@ -79,7 +79,7 @@ json_t const* json_createWithPool( char *str, jsonPool_t *pool ) {
 }
 
 /* Parse a string to get a json. */
-json_t const* json_create( char* str, json_t mem[], unsigned int qty ) {
+json_t const* json_create( char* str,  json_t mem[], unsigned int qty ) {
     jsonStaticPool_t spool;
     spool.mem = mem;
     spool.qty = qty;
