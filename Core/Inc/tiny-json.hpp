@@ -1,7 +1,7 @@
 #pragma once
 
 extern "C" {
-    #include "tiny-json.h"
+#include "tiny-json.h"
 }
 #include <array>
 #include <optional>
@@ -24,6 +24,7 @@ struct JSONObj {
     std::optional<bool> to_bool();
     std::optional<JSONObj> get_obj(etl::string_view key);
     std::optional<JSONObj> to_1st_of_list(void);
+    std::optional<int> findArray(etl::string_view key);
 
     template <size_t N>
     std::optional<int> get_list(etl::string_view key, etl::vector<JSONObj, N>& list)

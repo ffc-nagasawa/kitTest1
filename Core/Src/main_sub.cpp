@@ -6,13 +6,15 @@
  */
 
 #include "log.hpp"
+#include "jsonTest.hpp"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 void mainSubInit()
 {
-	Log::test();
+//	Log::test();
+	json::testJson();
 }
 #ifdef __cplusplus
 }

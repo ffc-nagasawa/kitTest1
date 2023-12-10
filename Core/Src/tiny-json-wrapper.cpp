@@ -84,8 +84,34 @@ std::optional<JSONObj> JSONObj::to_1st_of_list(void)
         return std::nullopt;
     }
     json_t const* child = json_getChild(ptr);
-    if (nullptr == child) {	// Null pointer if the json object has not properties
+    if (nullptr == child) {  // Null pointer if the json object has not properties
         return std::nullopt;
     }
     return JSONObj(child);
+}
+
+std::optional<int> JSONObj::findArray(etl::string_view key)
+{
+    // ルートオブジェクトから name フィールドを取得
+    json_t const* field = json_getProperty(ptr, key.data());
+    if (field == nullptr) {
+        return std::nullopt;
+    }
+    if (JSON_ARRAY != json_getType(field)) {
+        return std::nullopt;
+    }
+
+    json_t const* arrayItem;
+    arrayItem = json_getChild(field);
+    if (0 == arrayItem) {
+        return std::nullopt;
+    }
+    int counter = 1;
+    for (; arrayItem != 0; arrayItem = json_getSibling(arrayItem), counter++) {
+        //           if ( JSON_OBJ == json_getType( phone ) ) {
+        //               char const* phoneNumber = json_getPropertyValue( phone, "number" );
+        //               if ( phoneNumber ) printf( "Number: %s.\n", phoneNumber );
+        //           }
+    }
+    return counter;
 }
